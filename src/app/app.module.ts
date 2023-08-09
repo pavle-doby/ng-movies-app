@@ -7,6 +7,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
 import { InputComponent } from './components/input/input.component';
 import { DiscoverPageComponent } from './discover-page/discover-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DiscoverPageComponent } from './discover-page/discover-page.component';
     DiscoverPageComponent,
     InputComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+
   providers: [],
   bootstrap: [AppComponent],
 })

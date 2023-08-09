@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
   `,
   styles: [],
 })
-export class HomePageComponent {}
+export class HomePageComponent {
+  constructor() {}
+}
