@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
-import { InputComponent } from './components/input/input.component';
+import { InputComponent } from './components/atoms/input/input.component';
 import { DiscoverPageComponent } from './discover-page/discover-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MoviePosterComponent } from './components/molecules/movie-poster/movie-poster.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     DetailsPageComponent,
     DiscoverPageComponent,
     InputComponent,
+    MoviePosterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
 

@@ -29,13 +29,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
       }
 
       .input__label {
-        margin-bottom: 8px;
+        margin-bottom: 4px;
       }
 
       .input__input {
+        width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
-        border-radius: 4px;
+        border-radius: 2px;
       }
     `,
   ],
