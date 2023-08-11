@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/models/Movie';
 
@@ -8,7 +8,11 @@ import { Movie } from 'src/app/models/Movie';
     <div *ngIf="movies" class="movie-poster-list">
       <h2 *ngIf="title" class="movie-poster-list__title">{{ title }}</h2>
       <div class="movie-poster-list__list">
-        <app-movie-poster *ngFor="let movie of movies" [movie]="movie" />
+        <app-movie-poster
+          *ngFor="let movie of movies"
+          [movie]="movie"
+          (onClick)="onClick.emit(movie)"
+        />
       </div>
     </div>
     <!-- TODO: Handle Empty state -->
@@ -41,4 +45,7 @@ export class MoviePosterListComponent {
   movies: Movie[] = [];
   @Input()
   title: string = '';
+
+  @Output()
+  onClick: EventEmitter<Movie> = new EventEmitter<Movie>();
 }

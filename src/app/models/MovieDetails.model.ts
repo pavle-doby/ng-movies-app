@@ -50,9 +50,20 @@ export interface MovieDetails {
     month: number;
     year: number;
   };
-  runtime: number | null;
+  runtime: {
+    seconds: number;
+    __typename: string;
+  };
   series: string | null;
-  meterRanking: number | null;
+  meterRanking?: {
+    currentRank: number;
+    rankChange: {
+      changeDirection: 'UP' | 'DOWN';
+      difference: number;
+      __typename: 'MeterRankChange';
+    };
+    __typename: 'TitleMeterRanking';
+  };
   plot: {
     plotText: {
       plainText: string;

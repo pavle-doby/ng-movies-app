@@ -4,6 +4,8 @@ import { Movie } from 'src/app/models/Movie';
 @Component({
   selector: 'app-movie-poster',
   template: `
+    <!-- TODO: Add option that will wrap poster into link.-->
+    <!-- So user can right click the poster an open the move in new tab  -->
     <div class="movie-poster" (click)="handleClick()">
       <img
         class="movie-poster__img"

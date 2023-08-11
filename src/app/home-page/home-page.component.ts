@@ -4,13 +4,13 @@ import {
   Subject,
   debounceTime,
   distinctUntilChanged,
-  filter,
   map,
   of,
   switchMap,
 } from 'rxjs';
 import { MoviesService } from '../services/movies.service';
 import { Movie } from '../models/Movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +28,7 @@ import { Movie } from '../models/Movie';
         class="width-100"
         [movies]="movies"
         title="Search results"
+        (onClick)="openDetails($event)"
       />
 
       <app-movie-poster-list
@@ -35,6 +36,7 @@ import { Movie } from '../models/Movie';
         class="width-100"
         [movies]="randomMovies"
         title="What To Watch"
+        (onClick)="openDetails($event)"
       />
     </div>
   `,
@@ -80,12 +82,11 @@ export class HomePageComponent {
   movies$: Observable<Movie[]>;
   randomMovies$: Observable<Movie[]>;
 
-  constructor(private moviesService: MoviesService) {
+  constructor(private moviesService: MoviesService, private router: Router) {
     this.inputSubject = new Subject<string>();
 
     // TODO: Handle empty state for titleQuery
     this.movies$ = this.inputSubject.pipe(
-      // filter((titleQuery) => titleQuery !== ''),
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((titleQuery) => {
@@ -109,5 +110,9 @@ export class HomePageComponent {
 
   handleInput(value: string): void {
     this.inputSubject.next(value);
+  }
+
+  openDetails(movie: Movie): void {
+    this.router.navigate(['details', movie.id]);
   }
 }
