@@ -23,31 +23,19 @@ import { Movie } from '../models/Movie';
         (onInput)="handleInput($event)"
       />
 
-      <!-- TODO: Make Poster List component -->
-      <div
+      <app-movie-poster-list
         *ngIf="movies$ | async as movies"
-        class="home-page__movie-list-wrapper"
-      >
-        <h3 *ngIf="movies.length" class="home-page__subtitle">
-          Search results
-        </h3>
-        <div class="home-page__movie-list">
-          <app-movie-poster *ngFor="let movie of movies" [movie]="movie" />
-        </div>
-      </div>
+        class="width-100"
+        [movies]="movies"
+        title="Search results"
+      />
 
-      <div
+      <app-movie-poster-list
         *ngIf="randomMovies$ | async as randomMovies"
-        class="home-page__movie-list-wrapper"
-      >
-        <h3 class="home-page__subtitle">Random movies</h3>
-        <div class="home-page__movie-list">
-          <app-movie-poster
-            *ngFor="let movie of randomMovies"
-            [movie]="movie"
-          />
-        </div>
-      </div>
+        class="width-100"
+        [movies]="randomMovies"
+        title="What To Watch"
+      />
     </div>
   `,
   styles: [

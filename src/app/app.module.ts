@@ -9,6 +9,7 @@ import { InputComponent } from './components/atoms/input/input.component';
 import { DiscoverPageComponent } from './discover-page/discover-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviePosterComponent } from './components/molecules/movie-poster/movie-poster.component';
+import { MoviePosterListComponent } from './components/molecules/movie-poster-list/movie-poster-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MoviePosterComponent } from './components/molecules/movie-poster/movie-
     DiscoverPageComponent,
     InputComponent,
     MoviePosterComponent,
+    MoviePosterListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
 
