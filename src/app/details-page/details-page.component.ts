@@ -154,8 +154,6 @@ export class DetailsPageComponent {
         return this.moviesService.getMovieDetails(id);
       }),
       map((res) => {
-        console.log({ res: res.results });
-
         return res.results;
       })
     );

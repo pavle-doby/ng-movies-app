@@ -16,17 +16,24 @@ import { Router } from '@angular/router';
   selector: 'app-home-page',
   template: `
     <div class="home-page">
-      <app-input
-        class="home-page__input"
-        name="autocomplete"
-        placeholder="Search by title"
-        (onInput)="handleInput($event)"
-      />
+      <div class="home-page__search">
+        <app-input
+          class="home-page__input"
+          name="autocomplete"
+          placeholder="Search by title"
+          (onInput)="handleInput($event)"
+        />
+
+        <button>
+          <a routerLink="/discover">Discover</a>
+        </button>
+      </div>
 
       <app-movie-poster-list
         *ngIf="movies$ | async as movies"
         class="width-100"
         [movies]="movies"
+        [isPosterClickable]="true"
         title="Search results"
         (onClick)="openDetails($event)"
       />
@@ -35,6 +42,7 @@ import { Router } from '@angular/router';
         *ngIf="randomMovies$ | async as randomMovies"
         class="width-100"
         [movies]="randomMovies"
+        [isPosterClickable]="true"
         title="What To Watch"
         (onClick)="openDetails($event)"
       />
@@ -53,6 +61,15 @@ import { Router } from '@angular/router';
 
       .home-page > * {
         margin-top: 16px;
+      }
+
+      .home-page__search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
       }
 
       .home-page__input {
@@ -91,7 +108,7 @@ export class HomePageComponent {
       distinctUntilChanged(),
       switchMap((titleQuery) => {
         if (!titleQuery) {
-          return of({ results: [] });
+          return of({ results: null });
         }
 
         return this.moviesService.getMovieList(titleQuery);

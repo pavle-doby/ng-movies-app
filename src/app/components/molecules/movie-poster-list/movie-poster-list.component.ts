@@ -11,6 +11,7 @@ import { Movie } from 'src/app/models/Movie';
         <app-movie-poster
           *ngFor="let movie of movies"
           [movie]="movie"
+          [isClickable]="isPosterClickable"
           (onClick)="onClick.emit(movie)"
         />
       </div>
@@ -43,6 +44,8 @@ import { Movie } from 'src/app/models/Movie';
 export class MoviePosterListComponent {
   @Input({ required: true })
   movies: Movie[] = [];
+  @Input()
+  isPosterClickable: boolean = false;
   @Input()
   title: string = '';
 

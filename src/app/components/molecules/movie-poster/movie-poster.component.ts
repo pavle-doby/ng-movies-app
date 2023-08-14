@@ -6,14 +6,22 @@ import { Movie } from 'src/app/models/Movie';
   template: `
     <!-- TODO: Add option that will wrap poster into link.-->
     <!-- So user can right click the poster an open the move in new tab  -->
-    <div class="movie-poster" (click)="handleClick()">
+    <div
+      class="movie-poster"
+      [ngClass]="{
+        'movie-poster--clickable': isClickable
+      }"
+      (click)="handleClick()"
+    >
       <img
         class="movie-poster__img"
         alt="Movie Poster"
         [src]="movie.primaryImage?.url || imagePlaceholder"
         (error)="movie.primaryImage.url = imagePlaceholder"
       />
-      <h4 class="movie-poster__title">{{ movie.titleText.text }}</h4>
+      <h4 class="movie-poster__title" [title]="movie.titleText.text">
+        {{ movie.titleText.text }}
+      </h4>
     </div>
   `,
   styles: [
@@ -29,7 +37,7 @@ import { Movie } from 'src/app/models/Movie';
         border-radius: 2px;
       }
 
-      .movie-poster:hover {
+      .movie-poster--clickable:hover {
         cursor: pointer;
         box-shadow: 0 0 4px 2px #ccc;
         scale: 1.1;
@@ -44,6 +52,12 @@ import { Movie } from 'src/app/models/Movie';
 
       .movie-poster__title {
         padding: 8px 4px 0 4px;
+        max-height: 45px;
+        width: 100%;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     `,
   ],
@@ -51,6 +65,9 @@ import { Movie } from 'src/app/models/Movie';
 export class MoviePosterComponent {
   @Input({ required: true })
   movie: Movie;
+
+  @Input()
+  isClickable: boolean = false;
 
   @Output()
   onClick: EventEmitter<Movie> = new EventEmitter<Movie>();

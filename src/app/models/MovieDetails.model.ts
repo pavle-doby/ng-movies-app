@@ -26,11 +26,11 @@ export interface MovieDetails {
     __typename: string;
   };
   genres: {
-    genres: {
+    genres: Array<{
       text: string;
       id: string;
       __typename: string;
-    }[];
+    }>;
     __typename: string;
   };
   titleText: {
